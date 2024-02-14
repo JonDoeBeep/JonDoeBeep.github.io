@@ -1,110 +1,132 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 :root {
-    font-family: 'Roboto', sans-serif;
-    --changex: 503px;
-    --changey: 736px;
-    background-color: #69d4c1;
+  font-family: "Roboto", sans-serif;
+  --mouse-x: 1/2vw;
+  --mouse-y: 1/2vh;
+  --circle-height: 30px;
+  --circle-width: 30px;
+  --circle-opacity: 0;
+  --bg-color: #0f0f0f;
+  --stretch-factor: 1;
+  background-color: #000000;
+  cursor: none;
 }
 
-.blob-1 {
-    position: absolute;
-    top: -120px;
-    left: 250px;
-    width: 100%;
-    height: 100%;
-    background: #8942ca;
-    clip-path: circle(30% at 30% 30%);
-    z-index: -6;
-    animation: move 20s infinite; 
-    animation-direction: alternate;
-    animation-timing-function: ease-in-out;
+/*:3*/
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--bg-color);
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s;
 }
 
-.blob-2 {
-    position: absolute;
-    top: 300px;
-    left: 150px;
-    width: 100%;
-    height: 100%;
-    background: #218dae;
-    clip-path: circle(30% at 30% 30%);
-    z-index: -5;
-    animation: move 20s infinite; 
-    animation-direction: alternate;
-    animation-timing-function: ease-in-out;
+.content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
 }
 
-.blob-3 {
-    position: absolute;
-    top: 3000px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background: #3ad496;
-    clip-path: circle(30% at 30% 30%);
-    z-index: -4;
-    animation: move 20s infinite; 
-    animation-direction: alternate;
-    animation-timing-function: ease-in-out;
+h1 {
+  position: relative;
+  font-size: 7rem;
+  color: #f0f0f0;
+  z-index: 30;
 }
 
-.blob-4 {
-    position: absolute;
-    top: 0px;
-    left: 300px;
-    width: 100%;
-    height: 100%;
-    background: #1c5ad8;
-    clip-path: circle(30% at 30% 30%);
-    z-index: -3;
-    animation: move 20s infinite; 
-    animation-direction: alternate;
-    animation-timing-function: ease-in-out;
+h2 {
+  position: relative;
+  font-size: 5rem;
+  color: #f0f0f0;
+  z-index: 30;
 }
 
-.blob-5 {
-    position: absolute;
-    top: 300px;
-    left: 300px;
-    width: 100%;
-    height: 100%;
-    background: #2ac856;
-    clip-path: circle(30% at 30% 30%);
-    z-index: -2;
-    animation: move 20s infinite; 
-    animation-direction: alternate;
-    animation-timing-function: ease-in-out;
+a {
+  text-decoration: none;
+  color: #a2a2a2;
 }
 
-.blob-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    display: flex;
+.mouseCircle {
+  /*opacity: var(--circle-opacity);*/
+  position: absolute;
+  width: var(--circle-width);
+  height: var(--circle-height);
+  border-radius: 100%;
+  background-color: inherit;
+  top: var(--mouse-y, 0px);
+  left: var(--mouse-x, 0px);
+  outline: 3px solid #a0a0a0;
+  z-index: 1;
+  transform: scaleY(var(--stretch-factor, 1));
 }
 
-.blob-blur {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: inherit;
-    z-index: -1;
-    filter: blur(400px);
+.mainTitle {
+  animation: hideThenShow 3s ease-in-out forwards;
 }
 
-/* movement animation */
-@keyframes move {
-    0% {
-        transform: translate(0, 0);
-    }
-    50% {
-        transform: translate(var(--changex), var(--changey));
-    }
-    100% {
-        transform: translate(0, 0);
-    }
+.navigation {
+  animation: hideThenShow 5s ease-in-out forwards;
 }
+
+.top {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  left: 48%;
+  bottom: 95%;
+}
+
+.bottom {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  left: 48%;
+  top: 95%;
+}
+
+.left {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  right: 95%;
+  top: 48%;
+}
+
+.right {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  left: 95%;
+  top: 48%;
+}
+
+.top:hover, .bottom:hover, .left:hover, .right:hover {
+  color: #f0f0f0;
+}
+
+@keyframes hideThenShow {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

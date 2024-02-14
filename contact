@@ -9,16 +9,16 @@
   <link rel="manifest" href="/site.webmanifest" />
   <title>Michael Beecher - Home</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- v6 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
 <body>
-  <script text="text/babel" src="index.js"></script>
+  <script src="index.js"></script>
   <div class="mouseCircle"></div>
   <div class="content">
+    <!--
     <div class="mainTitle">
-      <h1 class="text">Michael Beecher</h1>
+      <h1>Michael Beecher</h1>
+      <h2>Fullstack Developer</h2>
     </div>
     <div class="navigation">
       <a class="top" onclick="transitionToPage('about');">About</a>
@@ -26,6 +26,7 @@
       <a class="left" onclick="transitionToPage('contact')">Contact</a>
       <a class="right" onclick="transitionToPage('/blog/home')">Blog</a>
     </div>
+    -->
   </div>
 </body>
 
