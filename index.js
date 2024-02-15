@@ -15,7 +15,6 @@ const minVelocity = 0.5; // Minimum velocity to keep the animation smooth
 const baseCircleWidth = 30; // Base width of the circle
 const baseCircleHeight = 30; // Base height of the circle
 
-<<<<<<< HEAD
 class TextScramble {
   constructor(el) {
     this.el = el;
@@ -67,60 +66,6 @@ class TextScramble {
   }
   randomChar() {
     return this.chars[Math.floor(Math.random() * this.chars.length)];
-=======
-
-class TextScramble {
-  constructor(el) {
-    this.el = el
-    this.chars = '!<>-_\\/[]{}—=+*^?#________'
-    this.update = this.update.bind(this)
-  }
-  setText(newText) {
-    const oldText = this.el.innerText
-    const length = Math.max(oldText.length, newText.length)
-    const promise = new Promise((resolve) => this.resolve = resolve)
-    this.queue = []
-    for (let i = 0; i < length; i++) {
-      const from = oldText[i] || ''
-      const to = newText[i] || ''
-      const start = Math.floor(Math.random() * 40)
-      const end = start + Math.floor(Math.random() * 40)
-      this.queue.push({ from, to, start, end })
-    }
-    cancelAnimationFrame(this.frameRequest)
-    this.frame = 0
-    this.update()
-    return promise
-  }
-  update() {
-    let output = ''
-    let complete = 0
-    for (let i = 0, n = this.queue.length; i < n; i++) {
-      let { from, to, start, end, char } = this.queue[i]
-      if (this.frame >= end) {
-        complete++
-        output += to
-      } else if (this.frame >= start) {
-        if (!char || Math.random() < 0.28) {
-          char = this.randomChar()
-          this.queue[i].char = char
-        }
-        output += `<span class="dud">${char}</span>`
-      } else {
-        output += from
-      }
-    }
-    this.el.innerHTML = output
-    if (complete === this.queue.length) {
-      this.resolve()
-    } else {
-      this.frameRequest = requestAnimationFrame(this.update)
-      this.frame++
-    }
-  }
-  randomChar() {
-    return this.chars[Math.floor(Math.random() * this.chars.length)]
->>>>>>> 19f476d47bfc521af931904a69826f2c468bd17a
   }
 }
 
@@ -130,26 +75,17 @@ function animateCircle() {
   let dy = targetY - currentY;
 
   // Increment velocity towards the target
-<<<<<<< HEAD
   velocityX = dx * lerpFactor + velocityX * easeFactor;
   velocityY = dy * lerpFactor + velocityY * easeFactor;
-=======
-  velocityX = (dx * lerpFactor) + (velocityX * easeFactor);
-  velocityY = (dy * lerpFactor) + (velocityY * easeFactor);
->>>>>>> 19f476d47bfc521af931904a69826f2c468bd17a
 
   // Update position
   currentX += velocityX;
   currentY += velocityY;
 
   // Calculate speed for the squishy effect
-<<<<<<< HEAD
   let speed =
     Math.min(Math.sqrt(velocityX * velocityX + velocityY * velocityY), 100) /
     20;
-=======
-  let speed = Math.min(Math.sqrt(velocityX * velocityX + velocityY * velocityY), 100) / 20;
->>>>>>> 19f476d47bfc521af931904a69826f2c468bd17a
 
   // Adjust circle size based on speed
   let adjustedWidth = baseCircleWidth + speed * 4; // Increase width with speed
@@ -157,7 +93,6 @@ function animateCircle() {
   adjustedHeight = Math.max(adjustedHeight, 10); // Ensure minimum height to avoid disappearing
 
   // Apply position and size to the element
-<<<<<<< HEAD
   root.style.setProperty("--mouse-x", `${currentX}px`);
   root.style.setProperty("--mouse-y", `${currentY}px`);
   root.style.setProperty("--circle-width", `${adjustedWidth}px`);
@@ -177,28 +112,11 @@ function animateCircle() {
     root.style.setProperty("--mouse-y", `${targetY}px`);
     root.style.setProperty("--circle-width", `${baseCircleWidth}px`);
     root.style.setProperty("--circle-height", `${baseCircleHeight}px`);
-=======
-  root.style.setProperty('--mouse-x', `${currentX}px`);
-  root.style.setProperty('--mouse-y', `${currentY}px`);
-  root.style.setProperty('--circle-width', `${adjustedWidth}px`);
-  root.style.setProperty('--circle-height', `${adjustedHeight}px`);
-
-  // Check if animation should continue
-  if (Math.abs(dx) > stopThreshold || Math.abs(dy) > stopThreshold || Math.abs(velocityX) > minVelocity || Math.abs(velocityY) > minVelocity) {
-    animationFrameId = requestAnimationFrame(animateCircle);
-  } else {
-    // Ensure final position and reset size exactly to the target and base size
-    root.style.setProperty('--mouse-x', `${targetX}px`);
-    root.style.setProperty('--mouse-y', `${targetY}px`);
-    root.style.setProperty('--circle-width', `${baseCircleWidth}px`);
-    root.style.setProperty('--circle-height', `${baseCircleHeight}px`);
->>>>>>> 19f476d47bfc521af931904a69826f2c468bd17a
     cancelAnimationFrame(animationFrameId);
     animationFrameId = null;
   }
 }
 
-<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", function (event) {
   const mphrases = ["Michael Beecher", "Frontend Developer"];
 
@@ -213,26 +131,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
   const bottomEl = document.querySelector(".bottom");
   const rightEl = document.querySelector(".right");
   const circle = document.querySelector(".mouseCircle");
-=======
-document.addEventListener('DOMContentLoaded', function (event) {
-
-  const mphrases = [
-    'Michael Beecher',
-    'Frontend Developer',
-  ]
-
-  const top = ['About']
-  const left = ['Contact']
-  const bottom = ['Projects']
-  const right = ['Blog']
-
-  const el = document.querySelector('.text');
-  const topEl = document.querySelector('.top');
-  const leftEl = document.querySelector('.left');
-  const bottomEl = document.querySelector('.bottom');
-  const rightEl = document.querySelector('.right');
-  const circle = document.querySelector('.mouseCircle');
->>>>>>> 19f476d47bfc521af931904a69826f2c468bd17a
   const mfx = new TextScramble(el);
   const topfx = new TextScramble(topEl);
   const leftfx = new TextScramble(leftEl);
@@ -244,15 +142,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   let nextTimeoutId = null; // To store timeout reference
   /*
-<<<<<<< HEAD
   const nextPhrase = () => {
     fx.setText(phrases[counter]).then(() => {
       counter = (counter + 1) % phrases.length;
-=======
-  const nextPhrase = () => { 
-    fx.setText(phrases[counter]).then(() => {
-      counter = (counter + 1) % phrases.length; 
->>>>>>> 19f476d47bfc521af931904a69826f2c468bd17a
       nextTimeoutId = setTimeout(nextPhrase, 8000); // Schedule next phrase
     });
   };
@@ -268,16 +160,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
   }
 
   function handleTextScramble(phrases, fx) {
-<<<<<<< HEAD
     return function () {
       // Return an event listener function
       nextPhrase(phrases, fx);
     };
-=======
-    return function() { // Return an event listener function
-      nextPhrase(phrases, fx); 
-    }
->>>>>>> 19f476d47bfc521af931904a69826f2c468bd17a
   }
 
   function clearScrambleTimeout() {
@@ -286,7 +172,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   document.onmousemove = function (e) {
     // i don't know why, but everything breaks if this is unindented.
-<<<<<<< HEAD
     if (!circle.style.opacity) {
       circle.style.opacity = "1";
     }
@@ -296,22 +181,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
     if (!animationFrameId) {
       animateCircle();
     }
-=======
-      if (!circle.style.opacity) {
-        circle.style.opacity = '1';
-      }
-      targetX = e.clientX - baseCircleWidth / 2;
-      targetY = e.clientY - baseCircleHeight / 2;
-
-      if (!animationFrameId) {
-        animateCircle();
-      }
->>>>>>> 19f476d47bfc521af931904a69826f2c468bd17a
   };
 
   nextPhrase(mphrases, mfx);
 
-<<<<<<< HEAD
   el.addEventListener("mouseenter", handleTextScramble(mphrases, mfx));
   topEl.addEventListener("mouseenter", handleTextScramble(top, topfx));
   leftEl.addEventListener("mouseenter", handleTextScramble(left, leftfx));
@@ -336,31 +209,3 @@ window.transitionToPage = function (href) {
 document.addEventListener("DOMContentLoaded", function (event) {
   document.querySelector("body").style.opacity = 1;
 });
-=======
-  el.addEventListener('mouseenter', handleTextScramble(mphrases, mfx));
-  topEl.addEventListener('mouseenter', handleTextScramble(top, topfx));
-  leftEl.addEventListener('mouseenter', handleTextScramble(left, leftfx));
-  bottomEl.addEventListener('mouseenter', handleTextScramble(bottom, bottomfx));
-  rightEl.addEventListener('mouseenter', handleTextScramble(right, rightfx));
-
-  // Adding mouseleave listeners
-  el.addEventListener('mouseleave', clearScrambleTimeout);
-  topEl.addEventListener('mouseleave', clearScrambleTimeout);
-  leftEl.addEventListener('mouseleave', clearScrambleTimeout);
-  bottomEl.addEventListener('mouseleave', clearScrambleTimeout);
-  rightEl.addEventListener('mouseleave', clearScrambleTimeout);
-
-});
-
-window.transitionToPage = function (href) {
-  document.querySelector('body').style.opacity = 0
-  setTimeout(function () {
-    window.location.href = href
-  }, 500)
-}
-
-document.addEventListener('DOMContentLoaded', function (event) {
-  document.querySelector('body').style.opacity = 1
-})
-
->>>>>>> 19f476d47bfc521af931904a69826f2c468bd17a
